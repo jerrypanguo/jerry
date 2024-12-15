@@ -15,7 +15,7 @@ body {
 /* 导航栏样式 */
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 10px 20px;
@@ -27,20 +27,6 @@ nav {
 nav .logo {
     font-size: 1.5rem;
     font-weight: bold;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
 }
 
 /* 背景样式 */
@@ -63,50 +49,18 @@ header .overlay {
     align-items: center;
 }
 
-header h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-}
-
-header h1 span {
+header h1 a {
     color: #00aaff;
-}
-
-.input-container {
-    display: flex;
-    margin-top: 20px;
-}
-
-.input-container input {
-    padding: 10px;
-    width: 300px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-}
-
-.input-container button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #ffa500;
-    color: #fff;
+    font-size: 3rem;
+    text-decoration: none;
     font-weight: bold;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
-}
-
-footer {
-    position: absolute;
-    bottom: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-footer button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    margin: 0 10px;
+    border: 2px solid #00aaff;
     padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+}
+
+header h1 a:hover {
+    background-color: #00aaff;
+    color: #ffffff;
+    transition: 0.3s;
 }
