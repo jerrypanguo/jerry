@@ -1,22 +1,40 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>下载古典吉他谱</title>
+    <title>Download Classical Guitar Score</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username && password) {
+                document.getElementById("login-form").style.display = "none";
+                document.getElementById("download-section").style.display = "block";
+            } else {
+                alert("Please enter both username and password.");
+            }
+        }
+    </script>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <nav>
-        <div class="logo">US.KG Domain Registry</div>
-    </nav>
-
-    <!-- 大背景和主内容 -->
     <header>
         <div class="overlay">
-            <h1><a href="索尔幻想曲Op.30.pdf" target="_blank">下载古典吉他谱</a></h1>
+            <!-- 登录/注册界面 -->
+            <div id="login-form">
+                <h1>Login or Register</h1>
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <button onclick="login()">Login / Register</button>
+            </div>
+
+            <!-- 下载链接 -->
+            <div id="download-section" style="display: none;">
+                <h1>Download Classical Guitar Score</h1>
+                <a href="索尔幻想曲Op.30.pdf" target="_blank">Click Here to Download</a>
+            </div>
         </div>
     </header>
 </body>
