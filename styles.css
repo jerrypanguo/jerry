@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "KaiTi", "楷体", cursive; /* 使用行楷字体 */
 }
 
 body {
@@ -25,7 +25,7 @@ nav {
 }
 
 nav .logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -57,6 +57,7 @@ header h1 a {
     border: 2px solid #00aaff;
     padding: 10px 20px;
     border-radius: 10px;
+    font-family: "KaiTi", "楷体", cursive; /* 行楷字体 */
 }
 
 header h1 a:hover {
