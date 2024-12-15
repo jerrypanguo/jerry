@@ -7,27 +7,62 @@
     <title>Download Classical Guitar Score</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        function register() {
+            const regUsername = document.getElementById("reg-username").value;
+            const regPassword = document.getElementById("reg-password").value;
+            if (regUsername && regPassword) {
+                localStorage.setItem(regUsername, regPassword);
+                alert("Registration successful! Please log in.");
+                showLogin();
+            } else {
+                alert("Please enter both username and password to register.");
+            }
+        }
+
         function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            if (username && password) {
+            const loginUsername = document.getElementById("login-username").value;
+            const loginPassword = document.getElementById("login-password").value;
+            const storedPassword = localStorage.getItem(loginUsername);
+
+            if (storedPassword && storedPassword === loginPassword) {
+                alert("Login successful!");
                 document.getElementById("login-form").style.display = "none";
                 document.getElementById("download-section").style.display = "block";
             } else {
-                alert("Please enter both username and password.");
+                alert("Incorrect username or password.");
             }
+        }
+
+        function showRegister() {
+            document.getElementById("register-form").style.display = "block";
+            document.getElementById("login-form").style.display = "none";
+        }
+
+        function showLogin() {
+            document.getElementById("register-form").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
         }
     </script>
 </head>
 <body>
     <header>
         <div class="overlay">
-            <!-- 登录/注册界面 -->
-            <div id="login-form">
-                <h1>Login or Register</h1>
-                <input type="text" id="username" placeholder="Enter your username" required>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <button onclick="login()">Login / Register</button>
+            <!-- 注册表单 -->
+            <div id="register-form">
+                <h1>Register</h1>
+                <input type="text" id="reg-username" placeholder="Choose a username" required>
+                <input type="password" id="reg-password" placeholder="Choose a password" required>
+                <button onclick="register()">Register</button>
+                <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            </div>
+
+            <!-- 登录表单 -->
+            <div id="login-form" style="display: none;">
+                <h1>Login</h1>
+                <input type="text" id="login-username" placeholder="Enter your username" required>
+                <input type="password" id="login-password" placeholder="Enter your password" required>
+                <button onclick="login()">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
             </div>
 
             <!-- 下载链接 -->

@@ -38,8 +38,8 @@ h1 {
     color: #00aaff;
 }
 
-/* 登录表单样式 */
-#login-form input {
+/* 输入框和按钮样式 */
+input {
     display: block;
     margin: 10px auto;
     padding: 10px;
@@ -49,7 +49,7 @@ h1 {
     border-radius: 5px;
 }
 
-#login-form button {
+button {
     padding: 10px 20px;
     background-color: #00aaff;
     color: #ffffff;
@@ -60,8 +60,17 @@ h1 {
     margin-top: 10px;
 }
 
-#login-form button:hover {
+button:hover {
     background-color: #0077cc;
+}
+
+a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* 下载链接样式 */
