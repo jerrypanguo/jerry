@@ -10,8 +10,11 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 </head>
 <body>
-    <header>
-        <div class="overlay">
+    <!-- 登录/注册按钮 -->
+    <button id="toggle-button" onclick="toggleForm()">登录/注册</button>
+
+    <!-- 弹出表单区域 -->
+    <div id="form-container">
             <!-- 注册表单 -->
             <div id="register-form">
                 <h1>Register</h1>
@@ -51,6 +54,16 @@
         };
         // 初始化 Firebase
         firebase.initializeApp(firebaseConfig);
+
+        // 显示/隐藏注册/登录表单
+        function toggleForm() {
+            const formContainer = document.getElementById('form-container');
+            if (formContainer.style.display === 'block') {
+                formContainer.style.display = 'none';
+            } else {
+                formContainer.style.display = 'block';
+            }
+        }
 
         // 注册功能
         function register() {
