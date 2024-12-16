@@ -35,16 +35,25 @@
         </div>
     </div>
 
-    <!-- 下载链接 -->
+    <!-- 下载链接和视频区域 -->
     <div id="download-section" style="display: none;">
         <h1>Download Classical Guitar Score</h1>
-        <a href="索尔幻想曲Op.30.pdf" target="_blank">Click Here to Download</a>
+        <a href="索尔幻想曲Op.30.pdf" target="_blank">
+            <button>Click Here to Download</button>
+        </a>
+
+        <!-- 视频展示区域 -->
+        <h2>Classical Guitar Performance</h2>
+        <video width="640" height="360" controls>
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
 
     <script>
         // Firebase 配置代码
         const firebaseConfig = {
-            apiKey: "AIzaSyBZVMwHNf2seIc45iIYar2kg13nGZ28f4o",
+            apiKey: "你的Firebase API Key",
             authDomain: "jerryguitar-c8dfb.firebaseapp.com",
             databaseURL: "https://jerryguitar-c8dfb-default-rtdb.firebaseio.com",
             projectId: "jerryguitar-c8dfb",
@@ -59,11 +68,7 @@
         // 显示/隐藏注册/登录表单
         function toggleForm() {
             const formContainer = document.getElementById('form-container');
-            if (formContainer.style.display === 'block') {
-                formContainer.style.display = 'none';
-            } else {
-                formContainer.style.display = 'block';
-            }
+            formContainer.style.display = (formContainer.style.display === 'block') ? 'none' : 'block';
         }
 
         // 注册功能
@@ -87,8 +92,6 @@
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
                     alert("Login successful!");
-                    document.getElementById("register-form").style.display = "none";
-                    document.getElementById("login-form").style.display = "none";
                     document.getElementById("form-container").style.display = "none";
                     document.getElementById("download-section").style.display = "block";
                 })
