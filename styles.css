@@ -1,10 +1,9 @@
-
-/* 全局设置 */
+/* 全局样式 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Arial", sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
@@ -12,10 +11,9 @@ body {
     text-align: center;
 }
 
-/* 背景样式 */
 header {
     height: 100vh;
-    background: url('c956581f390b48c6ef4429e782a03e75.JPG') no-repeat center center/cover;
+    background: url('background.JPG') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,13 +31,12 @@ header .overlay {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
     color: #00aaff;
 }
 
-/* 输入框和按钮样式 */
-input {
+input, button {
     display: block;
     margin: 10px auto;
     padding: 10px;
@@ -50,14 +47,10 @@ input {
 }
 
 button {
-    padding: 10px 20px;
     background-color: #00aaff;
-    color: #ffffff;
+    color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
-    margin-top: 10px;
 }
 
 button:hover {
@@ -71,20 +64,4 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-/* 下载链接样式 */
-#download-section a {
-    color: #00aaff;
-    text-decoration: none;
-    font-size: 2rem;
-    border: 2px solid #00aaff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#download-section a:hover {
-    background-color: #00aaff;
-    color: #ffffff;
 }
