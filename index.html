@@ -10,8 +10,11 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 </head>
 <body>
-    <header>
-        <div class="overlay">
+    <!-- 登录/注册按钮 -->
+    <button id="toggle-button" onclick="toggleForm()">登录/注册</button>
+
+    <!-- 弹出表单区域 -->
+    <div id="form-container">
             <!-- 注册表单 -->
             <div id="register-form">
                 <h1>Register</h1>
@@ -30,20 +33,19 @@
                 <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
             </div>
 
-            <!-- 乐谱和视频区域 -->
-            <div id="content-section" style="display: none;">
-                <h1>Welcome! Watch the Video & Download the Score</h1>
-                <!-- 视频区域 -->
-                <video width="640" height="360" controls>
-                    <source src="your-video.mp4" type="video/mp4">
+            <!-- 视频展示 -->
+            <div id="video-section">
+                <h2>Guitar Performance Video</h2>
+                <video controls width="640" autoplay muted>
+                    <source src="video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            </div>
 
-                <!-- 乐谱下载区域 -->
-                <h2>Download the Guitar Score</h2>
-                <a href="索尔幻想曲Op.30.pdf" download>
-                    <button>Download Score</button>
-                </a>
+            <!-- 下载链接 -->
+            <div id="download-section" style="display: none;">
+                <h1>Download Classical Guitar Score</h1>
+                <a href="索尔幻想曲Op.30.pdf" target="_blank">Click Here to Download</a>
             </div>
         </div>
     </header>
@@ -51,17 +53,26 @@
     <script>
         // Firebase 配置代码
         const firebaseConfig = {
-            apiKey: "AIzaSyBZVMwHNf2seIc45iTYar2kg13nGZ28f4o",
+            apiKey: "AIzaSyBZVMwHNf2seIc45iIYar2kg13nGZ28f4o",
             authDomain: "jerryguitar-c8dfb.firebaseapp.com",
-            databaseURL: "https://jerryguitar-c8dfb-default-rtdb.firebaseio.com",
+            databaseURL: "https://jerryguitar-c8dfb.firebaseio.com",
             projectId: "jerryguitar-c8dfb",
             storageBucket: "jerryguitar-c8dfb.appspot.com",
             messagingSenderId: "625843585019",
             appId: "1:625843585019:web:ed8f8eda7c7d20ea8fd55e"
         };
-
         // 初始化 Firebase
         firebase.initializeApp(firebaseConfig);
+
+        // 显示/隐藏注册/登录表单
+        function toggleForm() {
+            const formContainer = document.getElementById('form-container');
+            if (formContainer.style.display === 'block') {
+                formContainer.style.display = 'none';
+            } else {
+                formContainer.style.display = 'block';
+            }
+        }
 
         // 注册功能
         function register() {
@@ -84,30 +95,21 @@
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
                     alert("Login successful!");
-                    showContent();
+                    document.getElementById("register-form").style.display = "none";
+                    document.getElementById("login-form").style.display = "none";
+                    document.getElementById("download-section").style.display = "block";
                 })
                 .catch(error => alert("Error: " + error.message));
         }
 
-        // 切换显示注册表单
         function showRegister() {
             document.getElementById("register-form").style.display = "block";
             document.getElementById("login-form").style.display = "none";
-            document.getElementById("content-section").style.display = "none";
         }
 
-        // 切换显示登录表单
         function showLogin() {
             document.getElementById("register-form").style.display = "none";
             document.getElementById("login-form").style.display = "block";
-            document.getElementById("content-section").style.display = "none";
-        }
-
-        // 显示视频和乐谱区域
-        function showContent() {
-            document.getElementById("register-form").style.display = "none";
-            document.getElementById("login-form").style.display = "none";
-            document.getElementById("content-section").style.display = "block";
         }
     </script>
 </body>
