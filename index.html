@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Classical Guitar Score</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Firebase库 -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
@@ -15,52 +16,43 @@
 
     <!-- 弹出表单区域 -->
     <div id="form-container">
-            <!-- 注册表单 -->
-            <div id="register-form">
-                <h1>Register</h1>
-                <input type="email" id="reg-email" placeholder="Enter your email" required>
-                <input type="password" id="reg-password" placeholder="Enter a password" required>
-                <button onclick="register()">Register</button>
-                <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
-            </div>
-
-            <!-- 登录表单 -->
-            <div id="login-form" style="display: none;">
-                <h1>Login</h1>
-                <input type="email" id="login-email" placeholder="Enter your email" required>
-                <input type="password" id="login-password" placeholder="Enter your password" required>
-                <button onclick="login()">Login</button>
-                <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
-            </div>
-
-            <!-- 视频展示 -->
-            <div id="video-section">
-                <h2>Guitar Performance Video</h2>
-                <video controls width="640" autoplay muted>
-                    <source src="video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <!-- 下载链接 -->
-            <div id="download-section" style="display: none;">
-                <h1>Download Classical Guitar Score</h1>
-                <a href="索尔幻想曲Op.30.pdf" target="_blank">Click Here to Download</a>
-            </div>
+        <!-- 注册表单 -->
+        <div id="register-form">
+            <h3>Register</h3>
+            <input type="email" id="reg-email" placeholder="Enter your email" required>
+            <input type="password" id="reg-password" placeholder="Enter a password" required>
+            <button onclick="register()">Register</button>
+            <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
         </div>
-    </header>
+
+        <!-- 登录表单 -->
+        <div id="login-form" style="display: none;">
+            <h3>Login</h3>
+            <input type="email" id="login-email" placeholder="Enter your email" required>
+            <input type="password" id="login-password" placeholder="Enter your password" required>
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
+        </div>
+    </div>
+
+    <!-- 下载链接 -->
+    <div id="download-section" style="display: none;">
+        <h1>Download Classical Guitar Score</h1>
+        <a href="索尔幻想曲Op.30.pdf" target="_blank">Click Here to Download</a>
+    </div>
 
     <script>
         // Firebase 配置代码
         const firebaseConfig = {
-            apiKey: "AIzaSyBZVMwHNf2seIc45iIYar2kg13nGZ28f4o",
+            apiKey: "你的Firebase API Key",
             authDomain: "jerryguitar-c8dfb.firebaseapp.com",
-            databaseURL: "https://jerryguitar-c8dfb.firebaseio.com",
+            databaseURL: "https://jerryguitar-c8dfb-default-rtdb.firebaseio.com",
             projectId: "jerryguitar-c8dfb",
             storageBucket: "jerryguitar-c8dfb.appspot.com",
             messagingSenderId: "625843585019",
             appId: "1:625843585019:web:ed8f8eda7c7d20ea8fd55e"
         };
+
         // 初始化 Firebase
         firebase.initializeApp(firebaseConfig);
 
@@ -97,6 +89,7 @@
                     alert("Login successful!");
                     document.getElementById("register-form").style.display = "none";
                     document.getElementById("login-form").style.display = "none";
+                    document.getElementById("form-container").style.display = "none";
                     document.getElementById("download-section").style.display = "block";
                 })
                 .catch(error => alert("Error: " + error.message));
