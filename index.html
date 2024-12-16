@@ -10,11 +10,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 </head>
 <body>
-    <!-- 登录/注册按钮 -->
-    <button id="toggle-button" onclick="toggleForm()">登录/注册</button>
-
-    <!-- 弹出表单区域 -->
-    <div id="form-container">
+    <header>
+        <div class="overlay">
             <!-- 注册表单 -->
             <div id="register-form">
                 <h1>Register</h1>
@@ -38,7 +35,6 @@
                 <h1>Welcome! Watch the Video & Download the Score</h1>
                 <!-- 视频区域 -->
                 <video width="640" height="360" controls>
-                    <source src="video.mp4" type="video/mp4">
                     <source src="your-video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -55,26 +51,17 @@
     <script>
         // Firebase 配置代码
         const firebaseConfig = {
-            apiKey: "AIzaSyBZVMwHNf2seIc45iIYar2kg13nGZ28f4o",
+            apiKey: "AIzaSyBZVMwHNf2seIc45iTYar2kg13nGZ28f4o",
             authDomain: "jerryguitar-c8dfb.firebaseapp.com",
-            databaseURL: "https://jerryguitar-c8dfb.firebaseio.com",
+            databaseURL: "https://jerryguitar-c8dfb-default-rtdb.firebaseio.com",
             projectId: "jerryguitar-c8dfb",
             storageBucket: "jerryguitar-c8dfb.appspot.com",
             messagingSenderId: "625843585019",
             appId: "1:625843585019:web:ed8f8eda7c7d20ea8fd55e"
         };
+
         // 初始化 Firebase
         firebase.initializeApp(firebaseConfig);
-
-        // 显示/隐藏注册/登录表单
-        function toggleForm() {
-            const formContainer = document.getElementById('form-container');
-            if (formContainer.style.display === 'block') {
-                formContainer.style.display = 'none';
-            } else {
-                formContainer.style.display = 'block';
-            }
-        }
 
         // 注册功能
         function register() {
@@ -97,9 +84,7 @@
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
                     alert("Login successful!");
-                    document.getElementById("register-form").style.display = "none";
-                    document.getElementById("login-form").style.display = "none";
-                    document.getElementById("download-section").style.display = "block";
+                    showContent();
                 })
                 .catch(error => alert("Error: " + error.message));
         }
