@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body class="page-transition">
     <!-- 英雄区域 -->
     <section id="hero" class="hero-section">
         <img src="static/images/Home.jpg" alt="Yuze Pan - Classical Guitarist" class="hero-image">
@@ -67,9 +67,9 @@
     <!-- 播放器栏 -->
     <div class="player-bar">
         <div class="player-controls">
-            <button class="player-btn prev-btn">⏮</button>
-            <button class="player-btn play-btn">▶</button>
-            <button class="player-btn next-btn">⏭</button>
+            <button class="player-btn prev-btn" aria-label="上一首"></button>
+            <button class="player-btn play-btn" aria-label="播放/暂停"></button>
+            <button class="player-btn next-btn" aria-label="下一首"></button>
         </div>
         <div class="player-info">
             <span class="track-name"></span>
