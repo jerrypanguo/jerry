@@ -1,0 +1,531 @@
+:root {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --accent-color: #e5d5c0;
+    --nav-height: 60px;
+    --player-height: 60px;
+    --transition-speed: 0.3s;
+    --font-main: "Cormorant Garamond", serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: calc(var(--nav-height) + var(--player-height) + 2rem);
+}
+
+/* 基础动画 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* === 首页英雄区域 === */
+.hero-section {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    background-color: transparent;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+    display: block;
+    margin: 0;
+}
+
+/* === 简历部分 === */
+.profile-section {
+    padding: 8rem 0;
+    background: var(--primary-color);
+    position: relative;
+}
+
+.profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+.profile-name {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.profile-items {
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.profile-item {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-divider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 3rem auto;
+    height: 20px;
+}
+
+.profile-divider::before,
+.profile-divider::after {
+    content: '';
+    height: 1px;
+    background: linear-gradient(
+        to var(--direction, right),
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.2) 80%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    flex-grow: 1;
+    max-width: 220px;
+}
+
+.profile-divider::before {
+    --direction: right;
+}
+
+.profile-divider::after {
+    --direction: left;
+}
+
+.profile-divider span {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 0 15px;
+}
+
+/* === 社交图标 === */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform var(--transition-speed) ease, 
+                background var(--transition-speed) ease;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.social-link svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--secondary-color);
+}
+
+/* === 导航栏 === */
+.nav-bar {
+    position: fixed;
+    bottom: var(--player-height);
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    z-index: 1000;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.nav-logo:hover {
+    opacity: 0.8;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-item {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    transition: color var(--transition-speed) ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-item:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    background: var(--secondary-color);
+    transition: all var(--transition-speed) ease;
+    transform: translateX(-50%);
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+    width: 100%;
+}
+
+/* === 播放器栏 === */
+.player-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--player-height);
+    background: rgba(20, 20, 20, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    z-index: 1000;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.player-btn {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    opacity: 0.8;
+}
+
+.player-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1rem;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+}
+
+/* === 联系页面 === */
+.contact-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 600px;
+    padding: 0 2rem;
+    animation: slideUp 0.8s ease;
+}
+
+.contact-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.contact-text {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.contact-email {
+    margin-top: 3rem;
+}
+
+.contact-email a {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.2rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.contact-email a:hover {
+    border-bottom-color: var(--secondary-color);
+}
+
+/* === 视频页面 === */
+.video-section {
+    min-height: 100vh;
+    padding: 8rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 0 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.video-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.video-description {
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-wrapper {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .profile-name {
+        font-size: 3rem;
+    }
+    
+    .contact-title, .video-title {
+        font-size: 3rem;
+    }
+    
+    .hero-image {
+        object-position: center 48%;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-bar, .player-bar {
+        padding: 0 1.5rem;
+    }
+    
+    .nav-menu {
+        gap: 2rem;
+    }
+    
+    .profile-container, .video-container, .contact-container {
+        padding: 0 1.5rem;
+    }
+    
+    .profile-name {
+        font-size: 2.7rem;
+        margin-bottom: 2rem;
+    }
+    
+    .profile-item {
+        font-size: 1.15rem;
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .contact-title, .video-title {
+        font-size: 2.7rem;
+    }
+    
+    .contact-text, .video-description {
+        font-size: 1.3rem;
+    }
+    
+    .contact-email a {
+        font-size: 1.5rem;
+    }
+    
+    .hero-section {
+        height: 82vh;
+    }
+    
+    .hero-image {
+        object-position: center 48%;
+    }
+    
+    .social-links {
+        gap: 5rem;
+    }
+    
+    .profile-divider {
+        max-width: 400px;
+        margin: 2.5rem auto;
+    }
+    
+    .profile-divider::before,
+    .profile-divider::after {
+        max-width: 170px;
+    }
+    
+    .profile-divider span {
+        margin: 0 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-bar, .player-bar {
+        padding: 0 1rem;
+    }
+    
+    .nav-logo {
+        font-size: 1.7rem;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .nav-item {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    .profile-name {
+        font-size: 2.3rem;
+    }
+    
+    .profile-item {
+        font-size: 1.1rem;
+    }
+    
+    .social-links {
+        gap: 3.5rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .contact-title, .video-title {
+        font-size: 2.3rem;
+    }
+    
+    .contact-text, .video-description {
+        font-size: 1.1rem;
+    }
+    
+    .contact-email a {
+        font-size: 1.3rem;
+    }
+    
+    .hero-section {
+        height: 70vh;
+    }
+    
+    .hero-image {
+        object-position: center 42%;
+    }
+    
+    .profile-divider {
+        max-width: 280px;
+        margin: 2rem auto;
+    }
+    
+    .profile-divider::before,
+    .profile-divider::after {
+        max-width: 120px;
+    }
+    
+    .profile-divider span {
+        margin: 0 10px;
+    }
+} 

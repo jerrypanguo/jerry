@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video - Yuze Pan | 古典吉他演奏家</title>
+    <link href="static/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- 视频页面 -->
+    <section class="video-section">
+        <div class="video-container">
+            <h1 class="video-title">Performance</h1>
+            <p class="video-description">Performance at the Future Stars Concert Series, Huabin Opera House, Beijing</p>
+            
+            <div class="video-wrapper">
+                <video controls poster="static/images/video-poster.jpg">
+                    <source src="static/video/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 导航栏 -->
+    <div class="nav-bar">
+        <div class="nav-logo">Yuze Pan</div>
+        <nav class="nav-menu">
+            <a href="index.html#hero" class="nav-item">HOME</a>
+            <a href="index.html#music" class="nav-item">MUSIC</a>
+            <a href="video.html" class="nav-item active">VIDEO</a>
+            <a href="contact.html" class="nav-item">CONTACT</a>
+        </nav>
+    </div>
+    
+    <!-- 播放器栏 -->
+    <div class="player-bar">
+        <div class="player-controls">
+            <button class="player-btn prev-btn">⏮</button>
+            <button class="player-btn play-btn">▶</button>
+            <button class="player-btn next-btn">⏭</button>
+        </div>
+        <div class="player-info">
+            <span class="track-name"></span>
+            <span class="track-time">0:00/0:00</span>
+        </div>
+    </div>
+    
+    <!-- 脚本 -->
+    <script src="static/js/player.js"></script>
+</body>
+</html> 
