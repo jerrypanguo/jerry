@@ -11,11 +11,6 @@ class AudioPlayer {
                 title: 'Villa Lobos Etude No.7 - Yuze Pan',
                 file: 'static/audio/Villa Lobos Etude No.7.mp3',
                 duration: '2:17'
-            },
-            {
-                title: 'Roland Dyens - Hamsa PREMIERE NOUVELLE',
-                file: 'static/audio/Roland-Dyens-Hamsa PREMIERE NOUVELLE.WAV',
-                duration: '2:20'
             }
             // 可以添加更多音轨
         ];
