@@ -23,6 +23,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding-bottom: calc(var(--nav-height) + var(--player-height) + 2rem);
+    transition: opacity 0.3s ease;
 }
 
 /* 基础动画 */
@@ -187,6 +188,7 @@ body {
     padding: 0 3rem;
     z-index: 1000;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s ease, bottom 0.4s ease, opacity 0.4s ease;
 }
 
 .nav-logo {
@@ -250,36 +252,83 @@ body {
     padding: 0 3rem;
     z-index: 1000;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.4s ease, bottom 0.4s ease, opacity 0.4s ease;
 }
 
 .player-controls {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    z-index: 1001;
 }
 
 .player-btn {
-    background: none;
+    background: none !important;
     border: none;
-    color: var(--secondary-color);
-    font-size: 1.2rem;
+    color: white;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
-    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    opacity: 0.9;
+    padding: 0;
+    margin: 0 8px;
+    border-radius: 0;
 }
 
-.player-btn:hover {
+.player-btn:hover, .player-btn:active {
     opacity: 1;
-    transform: scale(1.1);
+    transform: none;
+    background: none !important;
+}
+
+.play-btn {
+    font-size: 1.8rem;
+}
+
+/* 控制符号样式,提高可见度 */
+.prev-btn::before {
+    content: "⏮";
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.play-btn::before {
+    content: "▶";
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.next-btn::before {
+    content: "⏭";
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* 播放状态 */
+.play-btn.playing::before {
+    content: "⏸";
 }
 
 .player-info {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 0.3rem;
     font-size: 1rem;
-    opacity: 0.8;
     letter-spacing: 0.5px;
+    color: white;
+}
+
+.track-name {
+    font-style: italic;
+    opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+.track-time {
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
 
 /* === 联系页面 === */
@@ -458,6 +507,19 @@ body {
     .profile-divider span {
         margin: 0 12px;
     }
+    
+    .player-btn {
+        width: 40px;
+        height: 40px;
+        margin: 0 5px;
+        font-size: 1.3rem;
+    }
+    
+    .play-btn {
+        width: 46px;
+        height: 46px;
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -528,4 +590,362 @@ body {
     .profile-divider span {
         margin: 0 10px;
     }
+    
+    .player-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+    
+    .player-info {
+        font-size: 0.85rem;
+    }
+    
+    /* 修复底部区域的整体显示 */
+    .player-bar, .nav-bar {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+}
+
+/* 移动设备专用样式覆盖 */
+@media screen and (max-width: 768px) {
+    /* 导航栏基本样式 */
+    .nav-bar {
+        position: fixed;
+        bottom: var(--player-height);
+        height: var(--nav-height);
+        min-height: var(--nav-height);
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* 导航菜单样式 */
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    /* 导航Logo样式 */
+    .nav-logo {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+    }
+    
+    /* 导航项基本样式 */
+    .nav-item {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+    
+    .nav-item:hover, .nav-item:active, .nav-item.active {
+        opacity: 1;
+        color: white;
+    }
+    
+    /* 重设播放器栏样式 */
+    .player-bar {
+        position: fixed;
+        bottom: 0;
+        height: var(--player-height);
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1001;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* 重设播放控制区域 */
+    .player-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding-left: 0;
+    }
+    
+    /* 重设文本信息区域 */
+    .player-info {
+        padding-right: 0;
+        font-size: 0.9rem;
+        gap: 2px;
+    }
+    
+    /* 调整曲目名称显示 */
+    .track-name {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    /* 重置按钮样式 */
+    .player-btn {
+        margin: 0 5px;
+        font-size: 1.4rem;
+    }
+    
+    .play-btn {
+        font-size: 1.6rem;
+    }
+    
+    /* 调整导航栏高度 */
+    .nav-bar {
+        height: 50px;
+        min-height: 50px;
+    }
+    
+    /* 重设整体底部间距 */
+    :root {
+        --nav-height: 50px;
+        --player-height: 60px;
+    }
+    
+    body {
+        padding-bottom: calc(var(--nav-height) + var(--player-height) + 10px);
+    }
+}
+
+/* 清除所有触摸设备特有样式 */
+@media (hover: none) and (pointer: coarse) {
+    .mobile-btn::before {
+        display: inline !important;
+    }
+    
+    .player-btn:active {
+        transform: none;
+        background-color: transparent !important;
+    }
+}
+
+/* 适配移动设备的底部导航和播放器 */
+@media screen and (max-width: 480px) {
+    :root {
+        --nav-height: 80px;
+        --player-height: 80px;
+    }
+    
+    body {
+        padding-bottom: calc(var(--nav-height) + var(--player-height) + 30px);
+    }
+    
+    .nav-logo {
+        font-size: 1.6rem;
+    }
+    
+    .nav-item {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .player-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+    
+    .player-info {
+        font-size: 0.85rem;
+    }
+    
+    /* 修复底部区域的整体显示 */
+    .player-bar, .nav-bar {
+        width: 100%;
+        left: 0;
+        right: 0;
+    }
+    
+    /* 更小屏幕设备的样式 */
+    .track-name {
+        max-width: 160px;
+        font-size: 0.9rem;
+    }
+    
+    .track-time {
+        font-size: 0.8rem;
+    }
+    
+    .player-btn {
+        font-size: 1.3rem;
+        margin: 0 3px;
+    }
+    
+    .play-btn {
+        font-size: 1.5rem;
+        margin: 0 5px;
+    }
+    
+    /* 调整导航项间距 */
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .nav-item {
+        font-size: 0.8rem;
+    }
+    
+    .nav-logo {
+        font-size: 1.4rem;
+    }
+}
+
+/* 优化横屏模式 */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+    .nav-bar, .player-bar {
+        flex-direction: row;
+        height: auto;
+        min-height: 50px;
+        padding: 5px 1rem;
+    }
+    
+    .nav-logo {
+        font-size: 1.4rem;
+    }
+    
+    .player-controls {
+        width: auto;
+    }
+    
+    .player-info {
+        flex-direction: row;
+        width: auto;
+    }
+    
+    body {
+        padding-bottom: 120px;
+    }
+    
+    :root {
+        --nav-height: 50px;
+        --player-height: 50px;
+    }
+}
+
+/* 移动设备触摸反馈 */
+.touch-active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(0.95) !important;
+}
+
+/* 确保滚动平滑 */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 移动设备按钮专用样式 */
+.mobile-btn {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 在iOS设备上的特殊修复 */
+@supports (-webkit-touch-callout: none) {
+    .player-btn {
+        background: none;
+    }
+    
+    .play-btn {
+        background: none;
+    }
+}
+
+/* 空格键按下的视觉反馈 */
+.key-pressed {
+    animation: key-pulse 0.2s ease-in-out;
+}
+
+@keyframes key-pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+}
+
+/* 特殊页面样式(视频页面) */
+body.video-page .player-bar {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.video-page .nav-bar {
+    bottom: 0;
+}
+
+/* 页面过渡通用动画 */
+.page-transition {
+    animation: fadeTransition 0.5s ease;
+}
+
+@keyframes fadeTransition {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* 添加导航活动项高亮样式 */
+.nav-item.active {
+    opacity: 1;
+    font-weight: 500;
+}
+
+/* 导航项激活状态增强 */
+.nav-item.active::after {
+    width: 100%;
+    opacity: 1;
+}
+
+/* 导航栏在视频页面的优化样式 */
+body.video-page .nav-bar {
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 完善页面过渡动画 */
+.nav-bar, .player-bar {
+    will-change: transform, opacity, bottom;
+    transition: transform 0.4s ease, bottom 0.4s ease, opacity 0.4s ease;
+}
+
+/* 页面反向过渡动画 */
+@keyframes slideUpTransition {
+    0% { 
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes navBarRise {
+    0% { bottom: 0; }
+    100% { bottom: var(--player-height); }
+}
+
+/* 反向动画类 */
+.reverse-transition .player-bar {
+    animation: slideUpTransition 0.4s ease forwards;
+}
+
+.reverse-transition .nav-bar {
+    animation: navBarRise 0.4s ease forwards;
+}
+
+/* 确保导航栏的过渡效果更加平滑 */
+body.video-page .nav-bar {
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
 } 
