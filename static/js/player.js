@@ -130,6 +130,8 @@ class AudioPlayer {
     play() {
         // 使用CSS类来更改播放按钮样式
         this.playBtn.classList.add('playing');
+        // 直接设置背景图片,确保在所有设备上都能显示
+        this.playBtn.style.backgroundImage = "url('https://img.icons8.com/ios-filled/50/ffffff/pause.png')";
         
         const playPromise = this.audioElement.play();
         
@@ -164,6 +166,8 @@ class AudioPlayer {
     pause() {
         // 使用CSS类来更改播放按钮样式
         this.playBtn.classList.remove('playing');
+        // 直接设置背景图片,确保在所有设备上都能显示
+        this.playBtn.style.backgroundImage = "url('https://img.icons8.com/ios-filled/50/ffffff/play.png')";
         this.audioElement.pause();
         this.isPlaying = false;
     }
