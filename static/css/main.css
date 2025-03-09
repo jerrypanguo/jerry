@@ -312,10 +312,20 @@ body {
 /* 使用图片替代Unicode字符 */
 .prev-btn {
     background-image: url('https://img.icons8.com/ios-filled/50/ffffff/rewind.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
 }
 
 .next-btn {
     background-image: url('https://img.icons8.com/ios-filled/50/ffffff/fast-forward.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
 }
 
 /* 移除之前的伪元素样式 */
@@ -634,6 +644,15 @@ body {
         border-radius: 0;
         transform: none !important;
     }
+    
+    /* 确保所有按钮在移动设备上显示正确 */
+    .player-btn, .prev-btn, .next-btn, .play-btn, .play-btn.playing {
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 /* 移动设备专用样式覆盖 */
@@ -751,8 +770,9 @@ body {
         display: inline !important;
     }
     
-    .player-btn:active, .play-btn:active, .play-btn.playing {
+    .player-btn, .prev-btn, .next-btn, .play-btn, .play-btn.playing {
         opacity: 1;
+        visibility: visible;
         background-size: contain !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
