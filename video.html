@@ -56,17 +56,27 @@
             // 确保在视频页面上导航栏位置正确
             document.body.classList.add('video-page');
             
-            // 优化视频控制
+            // 获取视频元素
             const videoElement = document.querySelector('video');
+            
+            // 添加视频的空格键控制
             if (videoElement) {
-                // 添加视频播放/暂停功能
-                videoElement.addEventListener('click', () => {
-                    if (videoElement.paused) {
-                        videoElement.play();
-                    } else {
-                        videoElement.pause();
+                // 阻止全局空格键事件在视频页面触发音频播放器
+                document.addEventListener('keydown', function(e) {
+                    if (e.code === 'Space' || e.keyCode === 32) {
+                        e.preventDefault();
+                        
+                        // 切换视频播放状态
+                        if (videoElement.paused) {
+                            videoElement.play();
+                        } else {
+                            videoElement.pause();
+                        }
+                        
+                        // 阻止事件冒泡,防止触发音频播放器
+                        return false;
                     }
-                });
+                }, true); // 使用捕获阶段处理事件
             }
             
             // 为所有返回到普通页面的链接添加反向过渡类
