@@ -297,10 +297,16 @@ body {
     background-image: url('https://img.icons8.com/ios-filled/50/ffffff/play.png');
     width: 28px;
     height: 28px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .play-btn.playing {
     background-image: url('https://img.icons8.com/ios-filled/50/ffffff/pause.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* 使用图片替代Unicode字符 */
@@ -619,10 +625,14 @@ body {
         right: 0;
     }
     
-    .play-btn {
-        width: 28px;
-        height: 28px;
-        margin: 0 8px;
+    .play-btn, .play-btn.playing {
+        width: 26px;
+        height: 26px;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        border-radius: 0;
+        transform: none !important;
     }
 }
 
@@ -741,9 +751,11 @@ body {
         display: inline !important;
     }
     
-    .player-btn:active {
-        transform: none;
-        background-color: transparent !important;
+    .player-btn:active, .play-btn:active, .play-btn.playing {
+        opacity: 1;
+        background-size: contain !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
     }
 }
 
@@ -770,6 +782,11 @@ body {
     .player-btn {
         width: 22px;
         height: 22px;
+        margin: 0 6px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.95;
     }
     
     .player-info {
@@ -793,29 +810,18 @@ body {
         font-size: 0.8rem;
     }
     
-    .player-btn {
-        font-size: 1.3rem;
-        margin: 0 3px;
-    }
-    
-    .play-btn {
-        font-size: 1.5rem;
+    .play-btn, .play-btn.playing {
+        width: 25px;
+        height: 25px;
         margin: 0 8px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        transform: none;
+        border-radius: 0;
     }
     
-    /* 调整导航项间距 */
-    .nav-menu {
-        gap: 1rem;
-    }
-    
-    .nav-item {
-        font-size: 0.8rem;
-    }
-    
-    .nav-logo {
-        font-size: 1.4rem;
-    }
-    
+    /* 调整控制区域间距 */
     .player-controls {
         gap: 0.8rem;
     }
