@@ -25,3 +25,6 @@ Allow: /*.webm$
 # 本网站内容的所有权和版权归属于Yuze Pan
 # © 2025 Yuze Pan. All Rights Reserved.
 # 如有任何问题请联系: panyuzepan6@gmail.com
+
+# 在robots.txt中添加sitemap引用
+Sitemap: https://jerryguitar.us.kg/sitemap.xml
