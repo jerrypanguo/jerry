@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video - Yuze Pan | 古典吉他演奏家</title>
     <link href="static/css/main.css" rel="stylesheet">
+    <link href="static/css/protection.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
 </head>
@@ -16,7 +17,7 @@
             <p class="video-description">Performance at the Future Stars Concert Series, Huabin Opera House, Beijing</p>
             
             <div class="video-wrapper">
-                <video controls poster="static/images/video-poster.jpg">
+                <video controls poster="static/images/video-poster.jpg" controlsList="nodownload nofullscreen" disablePictureInPlace>
                     <source src="static/video/video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -50,6 +51,7 @@
     
     <!-- 脚本 -->
     <script src="static/js/player.js"></script>
+    <script src="static/js/protection.js"></script>
     <script>
         // 页面加载时的平滑过渡动画
         document.addEventListener('DOMContentLoaded', () => {
