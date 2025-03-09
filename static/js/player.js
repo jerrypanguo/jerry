@@ -32,31 +32,16 @@ class AudioPlayer {
     
     // 设置空格键控制
     setupSpacebarControl() {
-        // 检查是否在视频页面,如果是则不设置音频控制
-        if (document.body.classList.contains('video-page')) {
-            return;
-        }
-        
-        document.addEventListener('keydown', (e) => {
-            // 检查是否按下空格键
-            if (e.code === 'Space' || e.keyCode === 32) {
-                // 阻止默认行为(如页面滚动)
-                e.preventDefault();
-                
-                // 检查目标元素,确保不是在输入框内
-                const targetTag = e.target.tagName.toLowerCase();
-                if (targetTag !== 'input' && targetTag !== 'textarea' && !e.target.isContentEditable) {
-                    // 控制音频播放
-                    this.togglePlay();
-                    
-                    // 播放按钮视觉反馈
-                    if (this.playBtn) {
-                        this.playBtn.classList.add('key-pressed');
-                        setTimeout(() => {
-                            this.playBtn.classList.remove('key-pressed');
-                        }, 200);
-                    }
-                }
+        // 监听空格键来控制播放/暂停,但在视频页面不执行
+        document.addEventListener('keydown', (event) => {
+            // 如果在视频页面,不处理空格键事件
+            if (document.body.classList.contains('video-page')) {
+                return;
+            }
+            
+            if (event.code === 'Space' || event.keyCode === 32) {
+                event.preventDefault(); // 防止页面滚动
+                this.togglePlay();
             }
         });
     }
@@ -208,39 +193,11 @@ class AudioPlayer {
 
 // 页面加载完成后初始化播放器
 document.addEventListener('DOMContentLoaded', () => {
-    // 检查是否在视频页面
-    const isVideoPage = document.body.classList.contains('video-page');
-    
-    // 仅在非视频页面初始化音频播放器
-    if (!isVideoPage && document.querySelector('.player-controls')) {
+    // 确保播放器控件存在
+    if (document.querySelector('.player-controls')) {
         new AudioPlayer();
     }
-    
-    // 单独为视频页面设置空格键控制
-    if (isVideoPage) {
-        document.addEventListener('keydown', (e) => {
-            // 检查是否按下空格键
-            if ((e.code === 'Space' || e.keyCode === 32) && !e.repeat) {
-                // 阻止默认行为(如页面滚动)
-                e.preventDefault();
-                
-                // 检查目标元素,确保不是在输入框内
-                const targetTag = e.target.tagName.toLowerCase();
-                if (targetTag !== 'input' && targetTag !== 'textarea' && !e.target.isContentEditable) {
-                    // 控制视频播放
-                    const videoElement = document.querySelector('video');
-                    if (videoElement) {
-                        if (videoElement.paused) {
-                            videoElement.play();
-                        } else {
-                            videoElement.pause();
-                        }
-                    }
-                }
-            }
-        });
-    }
-    
+
     // 获取所有外部链接(不是锚点链接)
     const externalLinks = document.querySelectorAll('a:not([href^="#"])');
     
