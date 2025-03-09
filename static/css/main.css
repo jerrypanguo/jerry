@@ -183,7 +183,8 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     display: flex;
-    justify-content: space-between;
+    flex-direction: row; /* 默认为一行布局 */
+    justify-content: space-between; /* 左右分布 */
     align-items: center;
     padding: 0 3rem;
     z-index: 1000;
@@ -197,7 +198,6 @@ body {
     letter-spacing: 1px;
     transition: opacity var(--transition-speed) ease;
     white-space: nowrap;
-    min-width: 90px;
 }
 
 .nav-logo:hover {
@@ -210,6 +210,7 @@ body {
     gap: 3rem;
 }
 
+/* 恢复导航项基本样式 */
 .nav-item {
     color: var(--secondary-color);
     text-decoration: none;
@@ -555,7 +556,8 @@ body {
         font-size: 1.6rem;
         letter-spacing: 1px;
         white-space: nowrap;
-        min-width: 90px;
+        margin-bottom: 0.5rem;
+        text-align: center;
     }
 }
 
@@ -564,19 +566,29 @@ body {
         padding: 0 1rem;
     }
     
+    .nav-bar {
+        flex-direction: column; /* 改为纵向两行 */
+        justify-content: center; /* 整体居中 */
+        align-items: center; /* 水平居中 */
+        padding: 0 1rem;
+        height: var(--nav-height);
+    }
+    
     .nav-logo {
         font-size: 1.5rem;
-        white-space: nowrap;
         letter-spacing: 0.5px;
-        min-width: 90px;
+        margin-bottom: 0.7rem; /* 添加下边距 */
+        text-align: center;
     }
     
     .nav-menu {
-        gap: 1.5rem;
+        width: 100%;
+        justify-content: center; /* 导航菜单居中 */
+        gap: 1.2rem; /* 减小间距 */
     }
     
     .nav-item {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         letter-spacing: 1px;
     }
     
@@ -632,9 +644,13 @@ body {
     }
     
     .player-btn {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         margin: 0 6px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.95;
     }
     
     .player-info {
@@ -649,13 +665,14 @@ body {
     }
     
     .play-btn, .play-btn.playing {
-        width: 26px;
-        height: 26px;
-        background-size: contain !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
+        width: 25px;
+        height: 25px;
+        margin: 0 8px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        transform: none;
         border-radius: 0;
-        transform: none !important;
     }
     
     /* 确保所有按钮在移动设备上显示正确 */
@@ -666,23 +683,24 @@ body {
         opacity: 1;
         visibility: visible;
     }
+    
+    /* 调整控制区域间距 */
+    .player-controls {
+        gap: 0.8rem;
+    }
+    
+    body {
+        padding-bottom: calc(var(--nav-height) + var(--player-height) + 20px);
+    }
 }
 
 /* 移动设备专用样式覆盖 */
 @media screen and (max-width: 768px) {
     /* 导航栏基本样式 */
     .nav-bar {
-        position: fixed;
-        bottom: var(--player-height);
-        height: var(--nav-height);
-        min-height: var(--nav-height);
-        padding: 0 1rem;
-        display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
-        z-index: 999;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0 1rem;
     }
     
     /* 导航菜单样式 */
@@ -690,6 +708,7 @@ body {
         display: flex;
         align-items: center;
         gap: 1.5rem;
+        justify-content: flex-end;
     }
     
     /* 导航Logo样式 */
@@ -697,22 +716,8 @@ body {
         font-size: 1.6rem;
         letter-spacing: 1px;
         white-space: nowrap;
-        min-width: 90px;
-    }
-    
-    /* 导航项基本样式 */
-    .nav-item {
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-        text-decoration: none;
-        color: white;
-        opacity: 0.8;
-        transition: opacity 0.3s ease;
-    }
-    
-    .nav-item:hover, .nav-item:active, .nav-item.active {
-        opacity: 1;
-        color: white;
+        margin-bottom: 0.5rem;
+        text-align: center;
     }
     
     /* 重设播放器栏样式 */
@@ -762,15 +767,9 @@ body {
         font-size: 1.6rem;
     }
     
-    /* 调整导航栏高度 */
-    .nav-bar {
-        height: 50px;
-        min-height: 50px;
-    }
-    
     /* 重设整体底部间距 */
     :root {
-        --nav-height: 50px;
+        --nav-height: 100px;
         --player-height: 60px;
     }
     
@@ -794,29 +793,46 @@ body {
     }
 }
 
-/* 适配移动设备的底部导航和播放器 */
+/* 仅在最小屏幕手机设备上使用两行导航布局 */
 @media screen and (max-width: 480px) {
     :root {
-        --nav-height: 80px;
-        --player-height: 80px;
+        --nav-height: 90px;
     }
     
     body {
-        padding-bottom: calc(var(--nav-height) + var(--player-height) + 30px);
+        padding-bottom: calc(var(--nav-height) + var(--player-height) + 20px);
+    }
+    
+    .nav-bar, .player-bar {
+        padding: 0 1rem;
+    }
+    
+    .nav-bar {
+        flex-direction: column; /* 改为纵向两行 */
+        justify-content: center; /* 整体居中 */
+        align-items: center; /* 水平居中 */
+        padding: 0 1rem;
+        height: var(--nav-height);
     }
     
     .nav-logo {
         font-size: 1.5rem;
-        white-space: nowrap;
         letter-spacing: 0.5px;
-        min-width: 90px;
+        margin-bottom: 0.7rem; /* 添加下边距 */
+        text-align: center;
+    }
+    
+    .nav-menu {
+        width: 100%; 
+        gap: 1.2rem; /* 减小间距 */
     }
     
     .nav-item {
         font-size: 0.85rem;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
     }
     
+    /* 恢复播放器样式 */
     .player-btn {
         width: 22px;
         height: 22px;
@@ -863,39 +879,34 @@ body {
     .player-controls {
         gap: 0.8rem;
     }
+    
+    body.video-page .nav-bar {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: var(--nav-height);
+    }
 }
 
-/* 优化横屏模式 */
+/* 横屏模式下所有页面都使用单行布局 */
 @media screen and (max-height: 480px) and (orientation: landscape) {
-    .nav-bar, .player-bar {
+    .nav-bar,
+    body.video-page .nav-bar {
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         height: auto;
         min-height: 50px;
         padding: 5px 1rem;
     }
     
     .nav-logo {
+        margin-bottom: 0;
         font-size: 1.4rem;
-        white-space: nowrap;
-        min-width: 90px;
-    }
-    
-    .player-controls {
-        width: auto;
-    }
-    
-    .player-info {
-        flex-direction: row;
-        width: auto;
-    }
-    
-    body {
-        padding-bottom: 120px;
     }
     
     :root {
         --nav-height: 50px;
-        --player-height: 50px;
     }
 }
 
@@ -949,6 +960,8 @@ body.video-page .player-bar {
 
 body.video-page .nav-bar {
     bottom: 0;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
 }
 
 /* 页面过渡通用动画 */
@@ -1014,4 +1027,73 @@ body.video-page .nav-bar {
 body.video-page .nav-bar {
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
+}
+
+body.video-page .nav-bar {
+    bottom: 0;
+}
+
+/* 仅在小屏幕手机设备上应用视频页面的两行导航样式 */
+@media screen and (max-width: 480px) {
+    body.video-page .nav-bar {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: var(--nav-height);
+    }
+}
+
+/* 视频页面导航栏调整 */
+body.video-page .nav-bar {
+    bottom: 0;
+}
+
+/* 针对768px以下设备优化导航样式 */
+@media screen and (max-width: 768px) {
+    .nav-bar {
+        padding: 0 1.5rem;
+    }
+    
+    .nav-menu {
+        gap: 2rem;
+    }
+}
+
+/* 在小屏幕手机设备上,所有页面(包括视频页面)都使用两行布局 */
+@media screen and (max-width: 480px) {
+    body.video-page .nav-bar,
+    .nav-bar {
+        flex-direction: column; /* 改为纵向两行 */
+        justify-content: center; /* 整体居中 */
+        align-items: center; /* 水平居中 */
+        height: var(--nav-height);
+    }
+    
+    .nav-logo {
+        margin-bottom: 0.7rem; /* 添加下边距 */
+        text-align: center;
+    }
+    
+    .nav-menu {
+        width: 100%;
+        justify-content: center; /* 导航菜单居中 */
+    }
+}
+
+/* 视频页面导航栏统一样式 */
+body.video-page .nav-bar {
+    bottom: 0; /* 仅调整位置,保持在屏幕底部 */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+/* 针对768px以下设备优化导航间距 */
+@media screen and (max-width: 768px) {
+    .nav-bar {
+        padding: 0 1.5rem;
+    }
+    
+    .nav-menu {
+        gap: 2rem;
+    }
 } 
