@@ -196,6 +196,8 @@ body {
     font-weight: 300;
     letter-spacing: 1px;
     transition: opacity var(--transition-speed) ease;
+    white-space: nowrap;
+    min-width: 90px;
 }
 
 .nav-logo:hover {
@@ -547,6 +549,14 @@ body {
         width: 32px;
         height: 32px;
     }
+    
+    /* 导航Logo样式 */
+    .nav-logo {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        min-width: 90px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -555,7 +565,10 @@ body {
     }
     
     .nav-logo {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
+        white-space: nowrap;
+        letter-spacing: 0.5px;
+        min-width: 90px;
     }
     
     .nav-menu {
@@ -683,6 +696,8 @@ body {
     .nav-logo {
         font-size: 1.6rem;
         letter-spacing: 1px;
+        white-space: nowrap;
+        min-width: 90px;
     }
     
     /* 导航项基本样式 */
@@ -791,7 +806,10 @@ body {
     }
     
     .nav-logo {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        white-space: nowrap;
+        letter-spacing: 0.5px;
+        min-width: 90px;
     }
     
     .nav-item {
@@ -858,6 +876,8 @@ body {
     
     .nav-logo {
         font-size: 1.4rem;
+        white-space: nowrap;
+        min-width: 90px;
     }
     
     .player-controls {
