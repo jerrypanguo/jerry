@@ -5,10 +5,6 @@
 
 User-agent: *
 Allow: /
-Allow: /static/images/
-Allow: /static/video/
-Allow: /static/css/
-Allow: /static/js/
 
 # 允许所有搜索引擎访问全站内容
 Disallow:
@@ -17,8 +13,6 @@ Disallow:
 Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.png$
-Allow: /*.gif$
-Allow: /*.mp4$
 Allow: /*.webm$
 
 # 所有权声明
